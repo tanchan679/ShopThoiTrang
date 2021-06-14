@@ -1,0 +1,74 @@
+﻿@model ShopThoiTrang.Models.UserRegister
+
+@{ 
+    ViewBag.title = "Đăng ký";
+}
+<h2>Đăng ký tài khoản</h2>
+<hr />
+<form method="post" action="#">
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <span class="text-bold">Tên</span>
+                <input type="text" required class="form-control" name="name" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <span class="text-bold">Email</span>
+                <input type="email" required class="form-control" name="email" />
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <div class="col-md-10">
+                <span class="text-bold">Mật khẩu</span>
+                <input type="password" required class="form-control" name="pass" />
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <div class="col-md-10">
+                <span class="text-bold">Xác nhận mật khẩu</span>
+                <input type="password" required class="form-control" name="passConfirm" />
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <div class="col-md-10">
+                <span class="text-bold">Số điện thoại</span>
+                <input type="text" required class="form-control" name="phonenumber" />
+            </div>
+        </div>
+
+
+        <div class="form-group">
+
+            <div class="col-md-10">
+                <span class="text-bold">Địa chỉ</span>
+                <input type="text" required class="form-control" name="addadress" />
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Đăng Ký" required class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+<div>
+    Đã có tài khoản
+    @Html.ActionLink("Đăng nhập", "../Login")
+</div>
+
+
