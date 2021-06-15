@@ -4,10 +4,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - ShopThoiTrang</title>
+
+
+
     <style>
-        .text-bold{
-            font-weight:700;
+        .text-bold {
+            font-weight: 700;
         }
+        .box-sanpham{
+          transition:1s;
+        }
+            .box-sanpham:hover {
+                box-shadow: 0px 0px 50px 0px #cfcfcf;
+                transition: 1s;
+            }
     </style>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -29,7 +39,23 @@
 
                 </ul>
                 <ul class="nav navbar-nav" style="float:right">
-                    <li>@Html.ActionLink("Đăng nhập / Đăng ký", "Index", "Login")</li>
+
+                    @if (@Session["username"] == null)
+                    {
+                        <li>
+
+                            @Html.ActionLink("Đăng nhập / Đăng ký", "Index", "Login")
+
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a href="#"> @Session["username"]</a>
+                        </li>
+                    }
+
+
 
                 </ul>
             </div>
@@ -39,7 +65,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - ShopThoiTrang Coppyright by <a href="Home/LazyTeam">LazyTeam</a></p>
+            <p>&copy; @DateTime.Now.Year - ShopThoiTrang Coppyright by @Html.ActionLink("LazyTeam", "LazyTeam", "Home")</p>
         </footer>
     </div>
 
