@@ -65,7 +65,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - ShopThoiTrang Coppyright by <a href="Home/LazyTeam">LazyTeam</a></p>
+            <p>&copy; @DateTime.Now.Year - ShopThoiTrang Coppyright by @Html.ActionLink("LazyTeam", "LazyTeam", "Home")</p>
         </footer>
     </div>
 
