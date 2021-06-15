@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ShopThoiTrang.Models;
+using ShopThoiTrang.DAL;
 
 namespace ShopThoiTrang.Controllers
 {
@@ -10,7 +12,10 @@ namespace ShopThoiTrang.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            List<SanPham> sanpham = new List<SanPham>();
+            ConnectDatabase database = new ConnectDatabase();
+            sanpham = database.getListSanPham();
+            return View(sanpham);
         }
 
         public ActionResult LazyTeam()
