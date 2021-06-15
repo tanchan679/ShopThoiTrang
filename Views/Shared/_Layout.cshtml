@@ -8,6 +8,18 @@
 
 
     <style>
+        .cart {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 60px;
+            background: #000;
+            text-align: center;
+            line-height: 60px;
+            box-shadow: 0px 0px 20px 0px #468;
+        }
         .text-bold {
             font-weight: 700;
         }
@@ -51,7 +63,9 @@
                     else
                     {
                         <li>
-                            <a href="#"> @Session["username"]</a>
+
+                            @Html.ActionLink("Tài khoản", "Index", "User")
+
                         </li>
                     }
 
@@ -61,6 +75,12 @@
             </div>
         </div>
     </div>
+    @if (Session["username"] != null)
+    {
+        <div class="cart">
+            @Html.ActionLink("Cart", "Cart", "User")
+        </div>
+    }
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -72,5 +92,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+
 </body>
 </html>

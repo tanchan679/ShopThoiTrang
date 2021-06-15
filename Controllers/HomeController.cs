@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ShopThoiTrang.Models;
 using ShopThoiTrang.DAL;
+using System.Diagnostics;
 
 namespace ShopThoiTrang.Controllers
 {
@@ -17,7 +18,13 @@ namespace ShopThoiTrang.Controllers
             sanpham = database.getListSanPham();
             return View(sanpham);
         }
-
+        [HttpPost]
+        public ActionResult Index(SanPham temp)
+        {
+            Debug.WriteLine("---------------Lay data:" + temp.id);
+            Session["idsingle"] = temp.id;
+            return RedirectToAction("../Single");
+        }
         public ActionResult LazyTeam()
         {
             ViewBag.Message = "Your application description page.";

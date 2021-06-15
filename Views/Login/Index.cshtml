@@ -2,7 +2,13 @@
 @{
     ViewBag.Title = "Đăng nhập";
 }
-
+@if (Session["checkLogin"] == "False")
+{
+    Session.Contents.Remove("checkLogin");
+       <script>
+            alert("Đăng nhập thất bại, tài khoản hoặc mật khẩu không đúng");
+     </script>
+}
 
 <h2>Đăng nhập tài khoản</h2>
 <hr />

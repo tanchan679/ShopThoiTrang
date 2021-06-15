@@ -3,6 +3,12 @@
 @{ 
     ViewBag.title = "Đăng ký";
 }
+@if (Session["error"] != null)
+{
+    <script>
+        alert("@Session["error"]");
+    </script>
+}
 <h2>Đăng ký tài khoản</h2>
 <hr />
 <form method="post" action="#">

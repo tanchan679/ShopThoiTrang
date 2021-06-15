@@ -14,7 +14,6 @@ namespace ShopThoiTrang.Controllers
         // GET: Register
         public ActionResult Index()
         {
-            Debug.WriteLine("Khoi chay");
             return View();
         }
 
@@ -32,11 +31,18 @@ namespace ShopThoiTrang.Controllers
                 {
                     databae.registerUser(temp);
                     Session["username"] = databae.getNameByEmai(temp.email);
+                    Session["useremail"] = temp.email;
+                    Session.Timeout = 6000;
                 }
-                else check = false;
+                else
+                {
+                    Session["error"] = "Đăng ký thất bại, Email đã được đăng ký";
+                    check = false;
+                }
             }
             else
             {
+                Session["error"] = "Đăng ký thất bại, mật khẩu không khớp";
                 Debug.WriteLine("Khong Bang nhau");
                 check = false;
             }

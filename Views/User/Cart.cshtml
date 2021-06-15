@@ -1,0 +1,111 @@
+﻿@model IEnumerable<ShopThoiTrang.Models.SanPham>
+
+<h2>Chào bạn <span style="color:#ff6a00">@Session["username"]</span></h2>
+<br /><br />
+      <div>
+          <img style="width:100px;" src="data:image/png;base64,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" />
+          <Span style="font-size:30px">Giỏ hàng</Span>
+      </div>
+<table class="table">
+    <tr>
+        <th>
+            #   
+        </th>
+        <th>
+            Hình ảnh
+        </th>
+        <th>
+            Tên
+        </th>
+
+        <th>
+            Kích cỡ
+        </th>
+        <th>
+            Giá bán
+        </th>
+        <th>
+            Số lượng
+        </th>
+        <th>
+            Thanh toán
+        </th>
+
+        <th></th>
+    </tr>
+@{ 
+    int dem = 0;
+    int tongSL = 0;
+    int tongThanhToan = 0;
+}
+    @{ 
+        dem = 0;
+    }
+    
+@foreach (var item in Model) {
+    
+<tr>
+    <td>
+        @{
+            dem++;
+            
+        }
+        @dem
+    </td>
+    <td>
+        <img src=" @Html.DisplayFor(modelItem => item.Hinhanh)" style="width:70px;"
+    </td>
+
+    <td style="font-weight:700">
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+
+    <td style="font-weight:700">
+        @Html.DisplayFor(modelItem => item.Kichthuoc)
+    </td>
+    <td style="color:#ff6a00">
+
+        @Convert.ToDecimal(item.giaban).ToString("#,##0")  đ
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Soluong)
+        @{ 
+            tongSL = tongSL + item.Soluong;
+        }
+    </td>
+    <td style="color:#ff0000">
+        @Convert.ToDecimal(item.giaban * item.soluong).ToString("#,##0")  đ
+        @{
+            tongThanhToan = tongThanhToan + (item.giaban * item.soluong);
+        }
+    </td>
+
+    <td>
+        <form method="post" action="">
+            <input type="hidden" name="id" value="@Html.DisplayFor(modelItem => item.id)"/>
+            <input type="submit" value="Xóa" class="btn btn-link" />
+        </form>
+    </td>
+</tr>
+}
+<tr>
+    <td style="font-weight:700" colspan="2">
+        Tổng số
+    </td>
+  
+    <td></td>
+    <td></td>
+    <td></td>
+    <td style="font-weight:700">@tongSL</td>
+    <td style="color: #ff0000; font-weight:700"> @Convert.ToDecimal(tongThanhToan).ToString("#,##0")  đ</td>
+    <td></td>
+</tr>
+</table>
+<div style="width:100%; text-align: right">
+    <button onclick="Thanhtoan()" class="btn btn-primary" style="font-size:22px; padding:10px 40px 10px 40px">Thanh toán</button>
+</div>
+<script>
+    function Thanhtoan() {
+        alert("Chức năng chưa được phát triển");
+    }
+</script>

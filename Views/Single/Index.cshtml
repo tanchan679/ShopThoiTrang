@@ -1,0 +1,69 @@
+﻿@model ShopThoiTrang.Models.SanPham
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h2>@Html.DisplayFor(model => model.Name)</h2>
+        <hr />
+        <div class="row">
+            <div class="col-sm-5">
+                <img src="@Html.DisplayFor(model => model.Hinhanh)" style="width:100%; height:500px" />
+            </div>
+            <div class="col-sm-7">
+                <h3>@Html.DisplayFor(model => model.Name)</h3>
+
+                <hr />
+                <h3>Thông tin</h3>
+                <p style="font-weight:700; font-size:16px;">
+                    Giá bán: <span style="color:#f00"> @Html.DisplayFor(model => model.Giaban) đ</span>
+                </p>
+
+                <p style="font-weight:700">
+                    Size: <span style="color:#ff6a00"> @Html.DisplayFor(model => model.Kichthuoc)</span>
+                </p>
+                <p style="font-weight:700">
+                    Còn lại: <span style="color:#ff6a00"> @Html.DisplayFor(model => model.Soluong) chiếc</span>
+                </p>
+                <hr />
+                <h3>Đặt hàng</h3>
+                @if (Session["useremail"]==null)
+                {
+                    <div style="width:100%; height:200px; background: #ffd800; font-size:20px">
+                        Vui lòng đăng nhập để mua hàng
+                    </div>
+                }
+                else
+                {
+                    <form method="post" action="#">
+                        <input hidden name="id" value="@Html.DisplayFor(model => model.id)" />
+
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2" for="Name">Số lượng</label>
+
+                            <input class="form-control" type="number" name="soluong" value="1" />
+
+                        </div>
+
+
+                        <div class="form-group" style="width:100%; text-align:center; margin-top:59px">
+
+                            <input type="submit" onclick="addGioHang()" value="Thêm vào giỏ hàng" class="btn btn-danger" style="width:100%" />
+                        </div>
+
+                    </form>
+                }
+                <script>
+                    function addGioHang() {
+                        alert("Sản phẩm đã thêm vào giỏ hàng");
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <h2>Mô tả</h2>
+}
+@Html.DisplayFor(model => model.Mota)
