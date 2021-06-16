@@ -53,6 +53,55 @@ namespace ShopThoiTrang.DAL
 
             dieConnect(conn);
         }
+        public void addLoaiSanPham(LoaiSanPham temp)
+        {
+            SqlConnection conn = getConnect();
+            conn.Open();
+
+            String sql = "INSERT INTO loaisanpham values('" + temp.name + "')";
+            SqlCommand ghi = new SqlCommand(sql, conn);
+            ghi.ExecuteNonQuery();
+            Debug.WriteLine(sql);
+
+            dieConnect(conn);
+        }
+        public void addSanPham(SanPham temp)
+        {
+            SqlConnection conn = getConnect();
+            conn.Open();
+
+            String sql = "INSERT INTO sanpham values(" +temp.phanloai +",'" + temp.name +"','"+ temp.hinhanh + "',"+ temp.giaban + ","+ temp.soluong + ",'"+ temp.kichthuoc + "','"+ temp.mota + "')";
+            Debug.WriteLine(sql);
+            SqlCommand ghi = new SqlCommand(sql, conn);
+            ghi.ExecuteNonQuery();
+           
+
+            dieConnect(conn);
+        }
+        public void DeleteLoaiSanPhamByID(int id)
+        {
+            SqlConnection conn = getConnect();
+            conn.Open();
+
+            String sql = "DELETE FROM loaisanpham where id = "+id;
+            SqlCommand ghi = new SqlCommand(sql, conn);
+            ghi.ExecuteNonQuery();
+            Debug.WriteLine(sql);
+
+            dieConnect(conn);
+        }
+        public void DeleteSanPhamByID(int id)
+        {
+            SqlConnection conn = getConnect();
+            conn.Open();
+
+            String sql = "DELETE FROM sanpham where id = " + id;
+            SqlCommand ghi = new SqlCommand(sql, conn);
+            ghi.ExecuteNonQuery();
+            Debug.WriteLine(sql);
+
+            dieConnect(conn);
+        }
         public bool loginUser(UserLogin temp)
         {
             SqlConnection conn = getConnect();
@@ -132,6 +181,18 @@ namespace ShopThoiTrang.DAL
 
             return userInfo;
         }
+        public String getPhanLoaiByID(int id)
+        {
+            SqlConnection conn = getConnect();
+            conn.Open();
+            String sql = "SELECT tenloai FROM loaisanpham where id = " +id;
+            SqlCommand laydata = new SqlCommand(sql, conn);
+            SqlDataReader docdulieu = laydata.ExecuteReader();
+            String phanloai = "";
+            while (docdulieu.Read()) phanloai = docdulieu.GetString(0);
+            dieConnect(conn);
+            return phanloai;
+        }
         public List <SanPham> getListSanPham()
         {
             List <SanPham> sanpham= new List<SanPham>();
@@ -147,7 +208,7 @@ namespace ShopThoiTrang.DAL
             while (docdulieu.Read()) {
                 int id = docdulieu.GetInt32(0);
                 int id_loaisanpham = docdulieu.GetInt32(1);
-                String phanloai = "TEMP";
+                String phanloai = getPhanLoaiByID(id_loaisanpham);
                 String name = docdulieu.GetString(2);
                 String hinhanh = docdulieu.GetString(3);
                 int giaban = docdulieu.GetInt32(4);
@@ -233,6 +294,74 @@ namespace ShopThoiTrang.DAL
 
 
             return sanpham;
+        }
+        public String checkLoaiSanPhamInSanPhamById(int id)
+        {
+            SqlConnection conn = getConnect();
+            conn.Open();
+
+            String sql = "SELECT ten FROM sanpham where id_loaisanpham = " + id ;
+            SqlCommand laydata = new SqlCommand(sql, conn);
+            SqlDataReader docdulieu = laydata.ExecuteReader();
+            Debug.WriteLine(sql);
+            String name = "";
+            while (docdulieu.Read()) name = docdulieu.GetString(0);
+            dieConnect(conn);
+            return name;
+        }
+        public String checkSanPhamInGioHangById(int id)
+        {
+            SqlConnection conn = getConnect();
+            conn.Open();
+
+            String sql = "SELECT id_sanpham FROM giohang where id_sanpham = " + id;
+            SqlCommand laydata = new SqlCommand(sql, conn);
+            Debug.WriteLine(sql);
+            SqlDataReader docdulieu = laydata.ExecuteReader();
+        
+            String name = "";
+            while (docdulieu.Read()) name = "hfghghghfj";
+            dieConnect(conn);
+            return name;
+        }
+        public String checkLoaiSanPhamByID(int id)
+        {
+            SqlConnection conn = getConnect();
+            conn.Open();
+
+            String sql = "SELECT tenloai FROM loaisanpham where id = " + id;
+            SqlCommand laydata = new SqlCommand(sql, conn);
+            Debug.WriteLine(sql);
+            SqlDataReader docdulieu = laydata.ExecuteReader();
+
+            String name = "";
+            while (docdulieu.Read()) name = docdulieu.GetString(0);
+            dieConnect(conn);
+            return name;
+        }
+        public List<LoaiSanPham> getListLoaiSanPham()
+        {
+            List<LoaiSanPham> lsanpham = new List<LoaiSanPham>();
+
+
+            SqlConnection conn = getConnect();
+            conn.Open();
+            String sql = "Select * from loaisanpham ";
+            SqlCommand laydata = new SqlCommand(sql, conn);
+            SqlDataReader docdulieu = laydata.ExecuteReader();
+            Debug.WriteLine(sql);
+
+            while (docdulieu.Read())
+            {
+                int id = docdulieu.GetInt32(0);
+                
+                String loasanpham = docdulieu.GetString(1);
+                lsanpham.Add(new LoaiSanPham(id, loasanpham));
+            }
+            dieConnect(conn);
+
+
+            return lsanpham;
         }
     }
 }

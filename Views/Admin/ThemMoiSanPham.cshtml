@@ -1,0 +1,100 @@
+﻿@model ShopThoiTrang.Models.LoaiSanPham
+
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thêm mới sản phẩm</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <style>
+        a {
+            text-decoration: none
+        }
+
+
+
+        .chucnang a {
+            color: #fff;
+        }
+
+            .chucnang a:hover {
+                color: #ddd;
+            }
+
+        .box input[type = "submit"]:hover {
+            background: #2ecc71;
+        }
+    </style>
+</head>
+<body>
+    @if (Session["checkerr"] == "error")
+    {
+        Session.Contents.Remove("checkerr");
+        <script>
+            alert("Không thể Thêm!, ID loại sản phẩm không hợp lệ")
+        </script>
+    }
+    <div style="background: #12225b; text-align:center; height:50px; line-height:50px;">
+        <span style="font-weight:700; font-size:20px; color:#f00" class="chucnang">
+            @Html.ActionLink("Quản lý sản phẩm", "QuanLySanPham", "Admin")
+        </span>
+        <span style="font-weight:700; font-size:20px; margin-left:50px;" class="chucnang">
+            @Html.ActionLink("Quản lý loại sảm phẩm", "QuanLyLoaiSanPham", "Admin")
+        </span>
+    </div>
+    <div class="container">
+
+        <h1>
+            Thêm mới loại sản phẩm
+        </h1>
+
+        <form method="post" action="" style="max-width:300px;">
+            <input type="hidden" name="id" />
+            <div class="form-group">
+                <label for="" style="font-weight:700">  Tên sản phẩm</label>
+                <input class="form-control" type="text" name="name" />
+            </div>
+            <div class="form-group">
+                <label for="" style="font-weight:700">  Đường dẫn hình ảnh</label>
+                <input class="form-control" type="text" name="hinhanh" />
+            </div>
+            <div class="form-group">
+                <label for="" style="font-weight:700">ID Phân loại</label>
+                <input class="form-control" type="number" name="phanloai" />
+            </div>
+
+            <div class="form-group">
+                <label for="" style="font-weight:700">Kích cỡ</label>
+                <input class="form-control" type="text" name="kichthuoc" />
+            </div>
+            <div class="form-group">
+                <label for="" style="font-weight:700"> Số lượng</label>
+                <input class="form-control" type="number" name="soluong" />
+            </div>
+            <div class="form-group">
+                <label for="" style="font-weight:700"> Giá bán</label>
+                <input class="form-control" type="number" name="giaban" />
+            </div>
+
+            <div class="form-group">
+                <label for="" style="font-weight:700"> Mô tả</label>
+                <input class="form-control" type="text" name="mota" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Thêm mới" class="btn btn-primary" />
+            </div>
+        </form>
+        <hr />
+        <div>
+            @Html.ActionLink("Quay lại", "QuanLySanPham")
+        </div>
+    </div>
+    <div style="position: fixed; bottom:15px; left:20px;">
+        @Html.ActionLink("<< Quay lại trang chủ", "", "Home")
+    </div>
+
+</body>
+</html>

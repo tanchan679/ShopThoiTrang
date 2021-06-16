@@ -120,6 +120,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
@@ -130,6 +131,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\GioHang.cs" />
+    <Compile Include="Models\LoaiSanPham.cs" />
     <Compile Include="Models\SanPham.cs" />
     <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Models\UserInfo.cs" />
@@ -176,6 +178,11 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Single\Index.cshtml" />
     <Content Include="Views\User\Cart.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\QuanLySanPham.cshtml" />
+    <Content Include="Views\Admin\QuanLyLoaiSanPham.cshtml" />
+    <Content Include="Views\Admin\ThemMoiSanPham.cshtml" />
+    <Content Include="Views\Admin\ThemMoiLoaiSanPham.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

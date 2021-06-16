@@ -23,10 +23,14 @@ namespace ShopThoiTrang.Controllers
             bool checkLogin = false;
             ConnectDatabase database = new ConnectDatabase();
             checkLogin = database.loginUser(temp);
-            Session["username"] = database.getNameByEmai(temp.email);
-            Session["useremail"] = temp.email;
+            
             Session.Timeout = 6000;
-            if (checkLogin == true) Session["checkLogin"] = "True";
+            if (checkLogin == true)
+            {
+                Session["checkLogin"] = "True";
+                Session["username"] = database.getNameByEmai(temp.email);
+                Session["useremail"] = temp.email;
+            }
             else Session["checkLogin"] = "False";
             Debug.WriteLine("Get name:"+database.getNameByEmai(temp.email));
             return checkLogin == true ? RedirectToAction("../") : RedirectToAction("./");

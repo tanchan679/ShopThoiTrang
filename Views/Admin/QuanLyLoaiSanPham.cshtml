@@ -1,0 +1,121 @@
+﻿@model IEnumerable<ShopThoiTrang.Models.LoaiSanPham>
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <title>َQuản lý loại sản phẩm</title>
+    <style>
+        a {
+            text-decoration: none
+        }
+
+
+
+        .chucnang a {
+            color: #fff;
+        }
+
+            .chucnang a:hover {
+                color: #ddd;
+            }
+
+        .box input[type = "submit"]:hover {
+            background: #2ecc71;
+        }
+    </style>
+</head>
+<body>
+    @if (Session["checkerr"] == "error")
+    {
+        Session.Contents.Remove("checkerr");
+        <script>
+            alert("Không thể xóa!, vẫn còn sản phẩm thuộc phân loại này")
+        </script>
+    }
+    <div style="background: #12225b; text-align:center; height:50px; line-height:50px;">
+        <span style="font-weight:700; font-size:20px; color:#f00" class="chucnang">
+            @Html.ActionLink("Quản lý sản phẩm", "QuanLySanPham", "Admin")
+        </span>
+        <span style="font-weight:700; font-size:20px; margin-left:50px;" class="chucnang">
+            @Html.ActionLink("Quản lý loại sảm phẩm", "QuanLyLoaiSanPham", "Admin")
+        </span>
+    </div>
+
+    <div class="container">
+        <h1>Quản lý loại sản phẩm</h1>
+        <p>
+            @Html.ActionLink("Thêm mới sản phẩm", "ThemMoiLoaiSanPham")
+        </p>
+        <table class="table">
+            <tr>
+                <th>#</th>
+
+
+                <th>
+                    Tên loại
+                </th>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Hành động
+                </th>
+            </tr>
+            @{
+                int stt = 0;
+
+            }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+
+                        @{
+                            stt++;
+                        }@stt
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                    
+
+                        <form method="post">
+                            <input type="hidden" name="id" value="@Html.DisplayFor(modelItem => item.Id)" />
+                            <input type="submit" class="btn btn-link" value="Xóa" />
+                        </form>
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td style="font-weight:700" colspan="2">
+                    Tổng số phân loại
+                </td>
+
+                <td></td>
+
+                <td style="font-weight:700">@stt</td>
+                <td style="color: #ff0000; font-weight:700"> </td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="position: fixed; bottom:15px; left:20px;">
+        @Html.ActionLink("<< Quay lại trang chủ", "","Home")
+    </div>
+
+</body>
+</html>
+
+
